@@ -1,0 +1,20 @@
+{
+  "name": "STW-4",
+  "version": "1.0.0",
+  "description": "Conversor en JavaScript de grados Celsius a Farenheit y a Kelvin y viceversade la temperatura con uso de Emmet, npm, Package.json, Mocha, Chai, Gulp, Karma, Travis, Web Workers\r ### Descripción de la Práctica",
+  "main": "converter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alu4543/STW-4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alu4543/STW-4/issues"
+  },
+  "homepage": "https://github.com/alu4543/STW-4#readme"
+}
