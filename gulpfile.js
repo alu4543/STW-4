@@ -11,7 +11,7 @@ var gulp       = require('gulp'),
     imagemin   = require('gulp-imagemin');
 
     var paths = {
-      scripts: ['./*.js', './tests/*.js'],
+      scripts: ['./*.js', './test/*.js'],
       images: 'images/**/*'
     };
 
@@ -54,17 +54,17 @@ gulp.task('Minify', function () {
     .pipe(minifyHTML())
     .pipe(gulp.dest('./minified/'))
 
-  gulp.src('./tests/*.css')
+  gulp.src('./test/*.css')
     .pipe(minifyCSS({keepBreaks:true}))
-    .pipe(gulp.dest('./minified/tests/css/'))
+    .pipe(gulp.dest('./minified/test/css/'))
 
-  gulp.src('./tests/*.html')
+  gulp.src('./test/*.html')
     .pipe(minifyHTML({keepBreaks:true}))
-    .pipe(gulp.dest('./minified/tests/'))
+    .pipe(gulp.dest('./minified/test/'))
 
-  gulp.src('./tests/*.js')
+  gulp.src('./test/*.js')
     .pipe(uglify())
-    .pipe(gulp.dest('./minified/tests/js/'))
+    .pipe(gulp.dest('./minified/test/js/'))
 
 });
 

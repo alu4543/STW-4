@@ -1,54 +1,56 @@
-  "dependencies": {},
-  "devDependencies": {
-    "node-static": "~0.7.7",
-    "blanket": "^1.1.8",
-    "chai": "^3.3.0",
-    "mocha": "^2.3.3",
-    "sinon": "^1.17.1",
-    "del": "^2.0.2",
-    "gulp": "~3.8.10",
-    "gulp-concat": "^2.6.0",
-    "gulp-minify-css": "^1.2.1",
-    "gulp-minify-html": "^1.0.4",
-    "gulp-open": "^1.0.0",
-    "gulp-uglify": "^1.4.1",
-    "gulp-util": "^3.0.6",
-    "karma": "~0.12",
-    "karma-mocha": "*",
-    "karma-html2js-preprocessor": "*",
-    "karma-chrome-launcher": "*",
-    "karma-firefox-launcher": "*",
-    "karma-phantomjs-launcher": "*"
-  },
-
+{
   "name": "STW-4",
   "version": "1.0.0",
   "description": "JavaScript Units Conversor, we will use: Emmet, npm, Package.json, Mocha, Chai, Sinon, Gulp and Blanket",
   "main": "converter.js",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start --single-run --browsers Chrome",
+    "test": "./node_modules/karma/bin/karma start --single-run",
     "chai": "curl https://raw.githubusercontent.com/chaijs/chai/master/chai.js -o tests/chai.js",
     "blanket": "curl https://raw.githubusercontent.com/alex-seville/blanket/master/dist/qunit/blanket.min.js -o tests/blanket.js",
-    "mocha-blanket": "curl https://raw.githubusercontent.com/alex-seville/blanket/master/src/adapters/mocha-blanket.js -o tests/mocha-blanket.js",
-    "sinon": "curl http://sinonjs.org/releases/sinon-1.17.1.js -o tests/sinon-1.17.1.js"
-
+    "mochablanket": "curl https://raw.githubusercontent.com/alex-seville/blanket/master/src/adapters/mocha-blanket.js -o tests/mocha-blanket.js",
+    "sinon": "curl http://sinonjs.org/releases/sinon-1.17.1.js -o tests/sinon-1.17.1.js",
+    "favicon": "curl https://raw.githubusercontent.com/dhg/Skeleton/master/images/favicon.png -o images/favicon.png"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/alu4543/UnitsConverter4.git"
   },
-  "keywords": ["mocha",
+  "keywords": [
     "chai",
     "sinon",
     "testing",
     "blanket",
     "karma",
     "travis",
-    "javascript"],
+    "javascript"
+  ],
   "author": "Mohammed Mahrach",
-  "license": "ISC",
+    "license": "ISC",
   "bugs": {
     "url": "https://github.com/alu4543/UnitsConverter4/issues"
   },
-  "homepage": "https://github.com/alu4543/UnitsConverter4#readme"
+  "homepage": "https://github.com/alu4543/UnitsConverter4#readme",
+  "devDependencies": {
+    "blanket": "^1.1.7",
+    "chai": "^3.3.0",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-open": "^1.0.0",
+    "gulp-uglify": "^1.4.1",
+    "gulp-util": "^3.0.6",
+    "karma": "^0.13.14",
+    "karma-chai": "^0.1.0",
+    "karma-html2js-preprocessor": "^0.1.0",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-firefox-launcher": "~0.1",
+    "mocha": "^2.3.3",
+    "phantomjs": "^1.9.18",
+    "sinon": "^1.17.1"
+  }
 }

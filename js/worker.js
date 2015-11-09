@@ -8,9 +8,9 @@
         var value      = e.data,
             result1    = "",
             result2    = "",
-            regexp    = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+(?:\.\d+)?)?)\s*(º?(f(arenheit)?|c(elsius)?)|(k(elvin)?)|(((c(enti)?)?|(k(ilo)?)?)?m(eter)?))\s*$/i;
+            //regexp    = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+(?:\.\d+)?)?)\s*(º?(f(arenheit)?|c(elsius)?)|(k(elvin)?)|(((c(enti)?)?|(k(ilo)?)?)?m(eter)?))\s*$/i;
+            regexp = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+(?:\.\d+)?)?)\s*(º?(f(arenheit)?|c(elsius)?)|(k(elvin)?)|(((c(enti)?)|(k(ilo)?))?(m(eter)?)))\s*$/i;
             value     = value.match(regexp);
-
 
         if(value){
           var num = value[1];
