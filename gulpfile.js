@@ -1,38 +1,108 @@
-var gulp    = require('gulp'),
-    gutil   = require('gulp-util'),
-    uglify  = require('gulp-uglify'),
-    concat  = require('gulp-concat');
+var gulp       = require('gulp'),
+    karma      = require('gulp-karma'),
+    gutil      = require('gulp-util'),
+    uglify     = require('gulp-uglify'),
+    concat     = require('gulp-concat'),
+    open       = require('gulp-open'),
+    del        = require('del'),
+    minifyHTML = require('gulp-minify-html'),
+    minifyCSS  = require('gulp-minify-css'),
+    notify     = require('gulp-notify'),
+    imagemin   = require('gulp-imagemin');
 
-var del     = require('del');
-var minifyHTML = require('gulp-minify-html');
-var minifyCSS  = require('gulp-minify-css');
+    var paths = {
+      scripts: ['./*.js', './tests/*.js'],
+      images: 'images/**/*'
+    };
 
-gulp.task('minify', function () {
-  gulp.src('converter.js')
-  .pipe(uglify())
-  .pipe(gulp.dest('minified'));
+gulp.task('test', function() {
+  // Be sure to return the stream
+  return gulp.src([])
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
+});
+
+
+gulp.task('scripts', ['clean'], function() {
+  // Minify and copy all JavaScript (except vendor scripts)
+  // with sourcemaps all the way down
+  return gulp.src(paths.scripts)
+    .pipe(sourcemaps.init())
+      //.pipe(coffee())
+      .pipe(uglify())
+      .pipe(concat('all.min.js'))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('/js'));
+});
+
+gulp.task('Minify', function () {
+  gulp.src('./css/*.css')
+    .pipe(minifyCSS({keepBreaks:true}))
+    .pipe(gulp.dest('./minified/css/'))
+
+  gulp.src('./js/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('./minified/js/'))
 
   gulp.src('./index.html')
     .pipe(minifyHTML())
     .pipe(gulp.dest('./minified/'))
 
-  gulp.src('./*.css')
-   .pipe(minifyCSS({keepBreaks:true}))
-   .pipe(gulp.dest('./minified/'))
-
-   gulp.src('./tests/*.css')
+  gulp.src('./tests/*.css')
     .pipe(minifyCSS({keepBreaks:true}))
-    .pipe(gulp.dest('./minified/tests/'))
+    .pipe(gulp.dest('./minified/tests/css/'))
 
   gulp.src('./tests/*.html')
     .pipe(minifyHTML({keepBreaks:true}))
     .pipe(gulp.dest('./minified/tests/'))
 
   gulp.src('./tests/*.js')
-  .pipe(uglify())
-  .pipe(gulp.dest('./minified/tests/'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./minified/tests/js/'))
+
+});
+
+// Copy all static images
+gulp.task('images', ['clean'], function() {
+  return gulp.src(paths.images)
+    // Pass in options to the task
+    .pipe(imagemin({optimizationLevel: 5}))
+    .pipe(gulp.dest('/images'));
+});
+
+gulp.task('imagemin', function() {
+  gulp.src('./images/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('./minified/images/'))
+    .pipe(notify( { message: "imagemin - Complete!"} ));
 });
 
 gulp.task('clean', function(cb) {
-  del(['minified/*'], cb);
+  del(['minified/*'], cb)
+});
+
+// Rerun the task when a file changes
+gulp.task('watch', function() {
+  gulp.watch(paths.scripts, ['scripts']);
+  gulp.watch(paths.images, ['images']);
+});
+
+
+/*
+gulp.task('default', function() {
+  gulp.src([])
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'watch'
+    }));
+});
+*/
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', ['watch', 'scripts', 'images','clean', 'imagemin', 'test', 'minify'], function() {
 });

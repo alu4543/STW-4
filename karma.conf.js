@@ -10,11 +10,19 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai'],
 
+    client: {
+          mocha: {
+            ui: 'bdd'
+          }
+    },
 
     // list of files / patterns to load in the browser
     files: [
+      'test/index.html',
+      'test/*.js',
+      'js/*.js'
     ],
 
 
@@ -26,6 +34,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'test/index.html': ['html2js']
     },
 
 
@@ -54,7 +63,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS','Firefox'],
 
 
     // Continuous Integration mode
