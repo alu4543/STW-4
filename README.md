@@ -24,4 +24,4 @@
 
 ### Ejecutar las pruebas
 
-* [http://alu4543.github.io/UnitsConverter4/tests/](http://alu4543.github.io/UnitsConverter4/tests/)
+* [http://alu4543.github.io/UnitsConverter4/test/](http://alu4543.github.io/UnitsConverter4/test/)
